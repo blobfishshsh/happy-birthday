@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sticky Cards with Fade & Scale</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nova+Mono&display=swap" rel="stylesheet">
+
+  <style>
+    
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    
+    body {
+        font-family: "Nova Mono", monospace;
+        background: #f0f0f0;
+        transition: background-color 0.8s ease;
+    }
+    
+    .empty-section {
+        height: 100vh;
+        background: rgb(4, 15, 39);
+        display: flex;
+        justify-content: center;
+        margin: auto;
+        align-items: center;
+        color: #fff;
+        padding: 50px;
+    }
+    
+    .card-wrapper {
+        height: 85%;
+        padding-top: 15vh;
+        position: relative;
+        width: 75%;
+        margin: auto;
+    }
+    
+    .card-wrapper:last-of-type {
+        height: 85vh; /* 70vh + 15vh extra to account for bottom padding */
+        padding-bottom: 15vh;
+    }
+    
+    .card {
+        width: 100%;
+        height: calc(70vh - 15vh); /* 55vh */
+        margin: 0 auto;
+        background: #fff;
+        border-radius: 10px;
+        padding: 50px;
+        /* padding-top: 100px; */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        display: flex;
+        flex-direction: column;
+        /* justify-content: flex-end; */
+        /* justify-content: center; */
+        
+        
+        overflow-y: auto;  /* Hanya muncul scroll kalau konten luber */
+        overflow-x: hidden; /* Mencegah scroll samping yang tidak diinginkan */
+        position: relative;
+        scrollbar-gutter: stable;
+    }
+
+    .card::-webkit-scrollbar {
+  width: 6px;
+}
+
+.card::-webkit-scrollbar-track {
+  background: transparent; 
+  margin: 15px; /* Memberi jarak agar scrollbar tidak mentok ke ujung rounded */
+}
+
+.card::-webkit-scrollbar-thumb {
+  background: #d1d1d1; /* Warna scrollbar yang soft */
+  border-radius: 10px;
+}
+
+.card::-webkit-scrollbar-thumb:hover {
+  background: #b1b1b1;
+}
+    
+    .card-wrapper:last-of-type .card {
+        height: calc(85vh - 30vh); /* 85 - (15+15) = 55vh */
+    }
+
+    p{
+        margin: 25px;
+    }
+  </style>
+  <!-- GSAP & ScrollTrigger -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.1/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.1/ScrollTrigger.min.js"></script>
+</head>
+<body>
+  
+    <!-- Empty section before cards container -->
+    <section class="empty-section">
+        DOR!!! jkfaefjhafamca. Gak kaget? yaudah gak papa. <br>
+        Seriously, I can't believe i did this?!?!.  <br>
+        Soo, kamu udah buka hadiah dariku? <br>
+        How is it? <br>
+        Do you like it? <br>
+        Masih, banyak ketidaksempurnaan dari beberapa buatanku. <br>
+        But believe me, I made them with all my heart <br>
+        <br>
+
+        (Scroll ke bawah buat lanjut baca `_`)
+    </section>
+  
+    <div class="card-wrapper">
+        <div class="card">
+            <p>Jeng jeng jeng, today is your day.</p>
+            <p><b>Selamat ulang tahun yang ke-18 Azizzzzz!!!!!</b></p>
+        </div>
+    </div>
+    <div class="card-wrapper">
+      <div class="card">
+        <p>Life has been though, udah banyaak banget yang kamu laluin sampai saat ini. 
+            Banyak hal terjadi sampai kamu jadi Abdul Aziz yang aku kenal sekarang. 
+            Di tengah lika-liku perjalanan itu, somehow you made it, yeay! Kamu hebat. Terima kasih karena sudah bertahan sejauh ini.
+            Kamu manusia paling kuat yang pernah aku temuin. 
+            Tapi aku harap kamu gak perlu jadi kuat di hadapanku. You are allowed to be yourself, okaay?
+        </p>
+      </div>
+    </div>
+    <div class="card-wrapper">
+      <div class="card">
+        <p>Banyak harapan baik buatmu. Semoga kamu dilancarkan UTBK beserta ujian-ujian lainnya, 
+            semoga kamu berhasil masuk PTN yang kamu mau, 
+            semoga nanti kamu berhasil ambil gelar S.Psi, 
+            semoga kamu berhasil jadi orang sukses, semoga tercapai mimpi-mimpimu </p>
+      </div>
+    </div>
+    <div class="card-wrapper">
+      <div class="card">
+        <p>Dan di tengah harapanmu akan keberhasilan akan masa depanmu itu, 
+            semoga kamu lebih peduli dengan diri kamu sendiri, 
+            semoga kamu bisa berdamai dengan segala perkaramu, 
+            semoga kamu sehat selalu, 
+            semoga kamu gak takut buat meminta pertolongan ke orang lain,
+            semoga kamu senantiasa dikelilingi orang baik.
+            <br><br>
+            Dengan atau tanpaku nantinya, semoga banyak hal baik dan membahagiakan menyertaimu selalu.
+        </p>
+      </div>
+    </div>
+    <div class="card-wrapper">
+        <div class="card">
+          <p>
+            Terima kasih banyak buat semua hal yang pernah kita laluin bersama, baik sebelum atau sesudah kita menjadi seperti ini.
+            Terima kasih sudah mau mendengarkan banyakk banget keluh kesahku (T=T). 
+            Terima kasih karena barangkali berkali-kali kamu menerima kalimat maafku.
+            Terima kasih karena kamu mau menerima banyak kekuranganku.
+            Terima kasih karena berkatmu aku jauh lebih bahagia. Terima kasih banyak atas semuanya.
+          </p>
+        </div>
+    </div>
+    <div class="card-wrapper">
+        <div class="card">
+          <p>Aku selalu banggaa sama kamu, baik ketika kamu berhasil atau gagal, senang atau susah. 
+            Adakalanya nanti kita gak bisa selalu berjumpa. Tapi meski begitu, aku bakal selalu peduli dan dukung kamu. 
+            Aku mau kamu tumbuh jadi versi terbaik diri kamu.
+        </p>
+        </div>
+      </div>
+      <div class="card-wrapper">
+        <div class="card">
+          <p>Jelas kamu udah buka hadiah dariku. Terkait itu, I made them all selain buku itu.</p>
+        </div>
+      </div>
+      <div class="card-wrapper">
+        <div class="card">
+          <p>At first, yeaa kamu lihat pouch zipper yang kubikin. 
+            I think itu wadah zipper kedua yang pernah kubikin. 
+            I just love the color dan bentukan matanya yang kaya kancing aihihi.</p>
+        </div>
+      </div>
+      <div class="card-wrapper">
+        <div class="card">
+          <p>That book <b>"Seorang Wanita yang Ingin Menjadi Pohon Semangka di Kehidupan Berikutnya"</b> is one of my favorite book, 
+            dulu aku baca waktu minjem di coffee at home. 
+            Penulisnya sendiri itu seorang Psikiater (atau sejenisnya) dann isinya terkait obrolan beliau dengan pasiennya. 
+            Soo, aku rasa ini cocok banget buat kamu. Bahkan, aku beli buku yang satunya "Seorang Pria yang Melalui Duka dengan 
+            Mencuci Piring". Buku yang ini ngebahas terkait duka. Hmmm yeah ini cocok buat aku yang cenderung susah melepas sesuatu hshshs.
+            Literally dua buku itu penulisnya sama dan belakangan aku baru sadar ternyata covernya nyambung aihihi.
+          </p>
+        </div>
+      </div>
+      <div class="card-wrapper">
+        <div class="card">
+          <p>Lalu adaaa stimpy dan sonic, two of your favorite character. 
+            And somehow aku pun ngerasa those character fit right to you, in a good wayy. 
+            Jelas itu gak sepenuhnya rapi tapii setelah jadi aku rasa itu lucu aihihi. Semoga kamu suka dehh.</p>
+        </div>
+      </div>
+    <!-- <div class="card-wrapper">
+      <div class="card">
+        <p></p>
+      </div>
+    </div> -->
+  
+  <!-- Empty section after cards container -->
+  <section class="empty-section">
+    <div>
+        Wish you have a happy birthday!
+    </div>
+
+  </section>
+  
+  <script>gsap.registerPlugin(ScrollTrigger);
+    const wrappers = document.querySelectorAll('.card-wrapper');
+    
+    const colors = [
+      "#2D3C59",
+      "#94A378",
+      "#E5BA41",
+      "#D1855C",
+      "#E36A6A",
+      "#8A7650",
+      "#8E977D",
+      "#BF4646",
+      "#6F8F72",
+      "#ACBAC4" 
+    ];
+    
+    wrappers.forEach((wrapper, index) => {
+      const card = wrapper.querySelector('.card');
+      
+      ScrollTrigger.create({
+        trigger: wrapper,
+        start: "top 50%",
+        end: "bottom 50%",
+        onEnter: () => gsap.to("body", { backgroundColor: colors[index + 1], duration: 1 }),
+        onEnterBack: () => gsap.to("body", { backgroundColor: colors[index + 1], duration: 1 }),
+      });
+    
+      if (index === wrappers.length - 1) {
+        gsap.set(card, { opacity: 1, scale: 1 });
+      } else {
+        gsap.timeline({
+          scrollTrigger: {
+            trigger: wrapper,
+            start: "top top",
+            end: "bottom top",
+            scrub: true,
+            pin: true,
+            pinSpacing: false,
+          }
+        })
+        .set(card, { opacity: 1, scale: 1 })
+        .to(card, { opacity: 0, scale: 0.6, ease: "none" }, 0.01);
+      }
+    });
+    
+    ScrollTrigger.create({
+      trigger: ".empty-section",
+      start: "top top",
+      onEnterBack: () => gsap.to("body", { backgroundColor: colors[0], duration: 1 }),
+    });
+  </script>
+</body>
+</html>
